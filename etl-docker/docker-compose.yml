@@ -1,0 +1,9 @@
+version: '3'
+services:
+  my-access-extractor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./db:/app/db
+      - ./output:/app/output
