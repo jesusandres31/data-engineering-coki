@@ -1,9 +1,0 @@
-version: "3"
-services:
-  export-db-csv:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./db/base.mdb:/app/base.mdb
-      - ./output:/app/output
