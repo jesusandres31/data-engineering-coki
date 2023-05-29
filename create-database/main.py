@@ -1,5 +1,9 @@
 import os
 import psycopg2
+import time
+
+# Wait for the database to start up
+# time.sleep(10) 
 
 # Retrieve environment variables
 host = os.environ.get("DB_HOST")

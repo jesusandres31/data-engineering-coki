@@ -1,7 +1,8 @@
 version: '3'
 services:
   database:
-    image: postgres:13
+    image: postgres:12-alpine
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
@@ -19,7 +20,6 @@ services:
       DB_NAME: postgres
       DB_USER: postgres
       DB_PASSWORD: root
-      NEW_DB_NAME: newdatabase
     volumes:
       - ./script.py:/app/script.py
       - ./tables.sql:/app/tables.sql

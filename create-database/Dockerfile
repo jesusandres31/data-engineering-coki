@@ -1,10 +1,12 @@
-FROM python:3.12.0b1-alpine3.18
+FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY main.py /app/main.py
+COPY main.py /app/main.py 
+COPY .env /app/.env 
 COPY tables.sql /app/tables.sql
+COPY requirements.txt /app/requirements.txt
 
-RUN pip install psycopg2
+RUN pip install -r requirements.txt
 
-CMD [ "python", "main.py" ]
+CMD [ "python", "main.py" ] 
