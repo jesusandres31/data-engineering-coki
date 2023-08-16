@@ -1,7 +1,12 @@
 import subprocess
+import os
 
 # Specify the tables to extract
 tables = ['Clientes', 'Articulos', 'Factura', 'FacturaDetalle'] 
+
+# Create the output directory if it doesn't exist
+output_dir = '/app/output/'
+os.makedirs(output_dir, exist_ok=True)
 
 # Extract each table as a CSV file
 for table in tables:
@@ -15,7 +20,7 @@ for table in tables:
     output, _ = process.communicate()
 
     # Prepare the CSV file path
-    csv_file = f'/app/output/{table}.csv'
+    csv_file = os.path.join(output_dir, f'{table}.csv')
 
     # Write the output to the CSV file
     with open(csv_file, 'w') as file:
