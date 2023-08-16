@@ -1,0 +1,14 @@
+version: '3'
+services:
+  jupyter:
+    image: continuumio/miniconda3
+    command:
+      [
+        'bash',
+        '-c',
+        'conda install jupyter && jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root',
+      ]
+    ports:
+      - '8888:8888'
+    volumes:
+      - ./csv_files:/home/jovyan/csv_files
