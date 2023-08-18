@@ -100,3 +100,20 @@ CREATE TABLE IF NOT EXISTS "facturaDetalle" (
     FOREIGN KEY ("NroDoc") REFERENCES "factura" ("NroDoc"),
     FOREIGN KEY ("IdArt") REFERENCES "articulos" ("IdArt")
 );         
+
+CREATE TABLE IF NOT EXISTS "unidadMedida" (
+    "IdUM" VARCHAR(255) PRIMARY KEY,
+    "UM" VARCHAR(255),
+    "Decimales" INTEGER,
+    "Obs" TEXT,
+    "Estado" INTEGER,
+    "FechaHora" TIMESTAMP,
+    "Usuario" INTEGER,
+    "Linked" INTEGER
+);
+
+--
+-- relationships: 
+-- not needed for now
+--
+

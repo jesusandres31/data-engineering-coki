@@ -2,7 +2,7 @@ import subprocess
 import os
 
 # Specify the tables to extract
-tables = ['Clientes', 'Articulos', 'Factura', 'FacturaDetalle'] 
+tables = ['Clientes', 'Articulos', 'Factura', 'FacturaDetalle', 'UnidadMedida'] 
 
 # Create the output directory if it doesn't exist
 output_dir = '/app/output/'
