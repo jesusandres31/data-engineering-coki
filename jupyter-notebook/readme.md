@@ -1,3 +1,5 @@
+# Run Jupiter locally:
+
 ## create venv
 
 ```
@@ -60,3 +62,5 @@ jupyter notebook
 pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
+
+# Run Jupiter with Docker:
