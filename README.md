@@ -13,5 +13,3 @@
 - PowerBI
 
 - Apache Airflow
-
-<hr/>
