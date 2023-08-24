@@ -1,6 +1,17 @@
-# data-engineering-coki
+# Data Engineering project for Coki 📉📈📊
 
-### todo:
+- Database
 
-- transfor UM
-- load SQL
+- Datalake
+
+- Datawarehouse
+
+- ETL
+
+- Jupyter
+
+- PowerBI
+
+- Apache Airflow
+
+<hr/>
