@@ -1,17 +1,17 @@
-import subprocess
 import os
+import subprocess
 
 # Specify the tables to extract
-tables = ['Clientes', 'Articulos', 'Factura', 'FacturaDetalle', 'UnidadMedida'] 
+tables = ["Clientes", "Articulos", "Factura", "FacturaDetalle", "UnidadMedida"]
 
 # Create the output directory if it doesn't exist
-output_dir = '/app/output/'
+output_dir = "/app/output/"
 os.makedirs(output_dir, exist_ok=True)
 
 # Extract each table as a CSV file
 for table in tables:
     # Prepare the command
-    mdb_export_command = f'mdb-export /app/db/base.mdb {table}'
+    mdb_export_command = f"mdb-export /app/db/base.mdb {table}"
 
     print(mdb_export_command)
 
@@ -20,10 +20,10 @@ for table in tables:
     output, _ = process.communicate()
 
     # Prepare the CSV file path
-    csv_file = os.path.join(output_dir, f'{table}.csv')
+    csv_file = os.path.join(output_dir, f"{table}.csv")
 
     # Write the output to the CSV file
-    with open(csv_file, 'w') as file:
-        file.write(output.decode('utf-8'))
+    with open(csv_file, "w") as file:
+        file.write(output.decode("utf-8"))
 
-    print(f'{table} exported to {csv_file}')
+    print(f"{table} exported to {csv_file}")
