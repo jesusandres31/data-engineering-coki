@@ -1,25 +1,18 @@
 version: '3'
+
 services:
   database:
     image: postgres:12-alpine
-    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: postgres
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ../../datawarehouse/data:/var/lib/postgresql/data
 
   app:
     build:
       context: .
+      dockerfile: Dockerfile
     depends_on:
       - database
-    environment:
-      DB_HOST: database
-      DB_NAME: postgres
-      DB_USER: postgres
-      DB_PASSWORD: root
-    volumes:
-      - ./main.py:/app/main.py
-      - ./tables.sql:/app/tables.sql

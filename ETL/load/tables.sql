@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS "articulos" (
 );            
       
 CREATE TABLE IF NOT EXISTS "factura" (
-    "IdFactura" SERIAL PRIMARY KEY,
+    "IdFactura" TEXT,
     "NroDoc" TEXT NOT NULL,
     "TipoDoc" TEXT,
     "FechaFactura" TIMESTAMP NOT NULL,
@@ -67,12 +67,11 @@ CREATE TABLE IF NOT EXISTS "factura" (
     "TotalR" DECIMAL(10, 2),
     "Costo" DECIMAL(10, 2),
     "IdEle" INTEGER,
-    "Reparto" INTEGER,
-    FOREIGN KEY ("IdCliente") REFERENCES "clientes" ("Cod_Cliente")
+    "Reparto" INTEGER
 );
  
 CREATE TABLE IF NOT EXISTS "facturaDetalle" (
-    "IdFacturaDetalle" SERIAL PRIMARY KEY,
+    "IdFacturaDetalle" TEXT,
     "NroDoc" TEXT NOT NULL,
     "TipoDoc" TEXT,
     "IdArt" TEXT,
@@ -96,24 +95,5 @@ CREATE TABLE IF NOT EXISTS "facturaDetalle" (
     "NroDocDet" INTEGER,
     "TipoDocDet" TEXT,
     "TipoDet" TEXT,
-    "Cobro" TEXT,
-    FOREIGN KEY ("NroDoc") REFERENCES "factura" ("NroDoc"),
-    FOREIGN KEY ("IdArt") REFERENCES "articulos" ("IdArt")
+    "Cobro" TEXT
 );         
-
-CREATE TABLE IF NOT EXISTS "unidadMedida" (
-    "IdUM" TEXT PRIMARY KEY,
-    "UM" TEXT,
-    "Decimales" INTEGER,
-    "Obs" TEXT,
-    "Estado" INTEGER,
-    "FechaHora" TIMESTAMP,
-    "Usuario" INTEGER,
-    "Linked" INTEGER
-);
-
---
--- relationships: 
--- not needed for now
---
-

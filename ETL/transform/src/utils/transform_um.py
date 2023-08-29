@@ -12,9 +12,6 @@ import tempfile
 UnidadMedida_dir = "/app/datalake/UnidadMedida.csv"
 Articulos_dir = "/app/datalake/Articulos.csv"
 
-# File to be created
-Articulos_with_UM_dir = "/app/datalake/Articulos_with_UM.csv"
-
 
 def transform_um():
     # Create a dictionary to map IdUM to UM text

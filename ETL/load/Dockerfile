@@ -2,10 +2,10 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY main.py /app/main.py 
-COPY .env /app/.env 
-COPY tables.sql /app/tables.sql
-COPY requirements.txt /app/requirements.txt
+COPY /src /app/
+COPY .env /app/
+COPY tables.sql /app/
+COPY requirements.txt /app/ 
 
 RUN pip install -r requirements.txt
 
