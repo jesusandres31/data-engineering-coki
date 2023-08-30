@@ -1,3 +1,6 @@
+--
+-- create table
+--
 CREATE TABLE IF NOT EXISTS "clientes" (
     "Cod_Cliente" TEXT PRIMARY KEY,
     "Razon_Social" TEXT,
@@ -97,3 +100,43 @@ CREATE TABLE IF NOT EXISTS "facturaDetalle" (
     "TipoDet" TEXT,
     "Cobro" TEXT
 );         
+
+--
+-- remove constraints
+--
+ALTER TABLE factura DROP CONSTRAINT IF EXISTS "factura-NroDoc";
+
+ALTER TABLE "facturaDetalle" DROP CONSTRAINT IF EXISTS "facturaDetalle-factura";
+
+ALTER TABLE articulos DROP CONSTRAINT IF EXISTS "articulos-Codigo";
+
+ALTER TABLE "facturaDetalle" DROP CONSTRAINT IF EXISTS "facturaDetalle-articulos";
+
+ALTER TABLE clientes DROP CONSTRAINT IF EXISTS "clientes-Cod_Cliente";
+
+ALTER TABLE "factura" DROP CONSTRAINT IF EXISTS "factura-clientes";
+
+
+--
+-- create constraints
+--
+ALTER TABLE factura ADD CONSTRAINT "factura-NroDoc" UNIQUE ("NroDoc");
+
+ALTER TABLE "facturaDetalle"  
+    ADD CONSTRAINT "facturaDetalle-factura" 
+    FOREIGN KEY ("NroDoc") 
+    REFERENCES factura("NroDoc");
+
+ALTER TABLE articulos ADD CONSTRAINT "articulos-Codigo" UNIQUE ("Codigo");
+ 
+ALTER TABLE "facturaDetalle"  
+    ADD CONSTRAINT "facturaDetalle-articulos" 
+    FOREIGN KEY ("Codigo") 
+    REFERENCES articulos("Codigo");
+
+ALTER TABLE clientes ADD CONSTRAINT "clientes-Cod_Cliente" UNIQUE ("Cod_Cliente");
+
+ALTER TABLE "factura"  
+    ADD CONSTRAINT "factura-clientes" 
+    FOREIGN KEY ("IdCliente") 
+    REFERENCES clientes("Cod_Cliente");
