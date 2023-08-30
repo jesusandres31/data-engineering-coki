@@ -16,3 +16,5 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - database
+    volumes:
+      - ../../datalake:/app/data

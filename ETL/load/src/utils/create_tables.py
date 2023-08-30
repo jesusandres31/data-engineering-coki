@@ -19,4 +19,4 @@ def create_tables(host, new_database, user, password):
     cursor.close()
     conn.close()
 
-    print("SQL statement executed successfully!")
+    print("Tables created successfully!")

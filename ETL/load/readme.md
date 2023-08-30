@@ -1,3 +1,3 @@
 # Load
 
-docker-compose up --build
+docker compose up --build --abort-on-container-exit

@@ -1,6 +1,6 @@
 # Data Engineering project for Coki 📉📈📊
 
-- Database
+- Datasource
 
 - Datalake
 
