@@ -7,6 +7,8 @@ However, both product code "5" and "755" refer to the same product,
 and this change aims to ensure uniformity and accuracy in the data.
 
 The same happened with product code "41" and "455".
+
+The same happened with product code "2000" and "200".
 """
 
 import csv
@@ -28,7 +30,9 @@ def transform_cod():
             if codigo == "5":
                 fila[4] = "755"  # Change "5" to "755"
             if codigo == "41":
-                fila[4] = "455"  # Change "5" to "755"
+                fila[4] = "455"  # Change "41" to "455"
+            if codigo == "2000":
+                fila[4] = "200"  # Change "2000" to "200"
             new_rows.append(fila)
 
     with tempfile.NamedTemporaryFile(mode="w", delete=False) as temp_file:
