@@ -20,8 +20,8 @@ FacturaDetalle_dir = "/app/datalake/FacturaDetalle.csv"
 
 def transform_cod():
     # Fix FacturaDetalle.csv
-    with open(FacturaDetalle_dir, "r") as archivo:
-        csv_reader = csv.reader(archivo)
+    with open(FacturaDetalle_dir, "r") as file:
+        csv_reader = csv.reader(file)
         header = next(csv_reader)
         new_rows = [header]
 

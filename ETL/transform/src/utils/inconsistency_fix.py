@@ -24,8 +24,8 @@ Articulos_dir = "/app/datalake/Articulos.csv"
 
 def inconsistency_fix():
     # Fix Articulos.csv
-    with open(Articulos_dir, "r") as archivo:
-        csv_reader = csv.reader(archivo)
+    with open(Articulos_dir, "r") as file:
+        csv_reader = csv.reader(file)
         header = next(csv_reader)
         new_rows = [header]
 
@@ -42,8 +42,8 @@ def inconsistency_fix():
     shutil.move(temp_file.name, Articulos_dir)
 
     # Fix FacturaDetalle.csv
-    with open(FacturaDetalle_dir, "r") as archivo:
-        csv_reader = csv.reader(archivo)
+    with open(FacturaDetalle_dir, "r") as file:
+        csv_reader = csv.reader(file)
         header = next(csv_reader)
         new_rows = [header]
 

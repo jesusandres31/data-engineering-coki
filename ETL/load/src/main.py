@@ -61,5 +61,6 @@ execution_time_seconds = end_time - start_time
 execution_minutes = int(execution_time_seconds // 60)
 execution_seconds = int(execution_time_seconds % 60)
 print(
-    f"Script execution completed in {execution_minutes} minutes and {execution_seconds} seconds."
+    f"Script execution completed in {execution_minutes} minutes and {execution_seconds} seconds.",
+    flush=True,
 )
