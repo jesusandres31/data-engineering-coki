@@ -6,4 +6,6 @@
 
 **/logs/*
 
+**/__pycache__/
+ 
 !**/.gitkeep
