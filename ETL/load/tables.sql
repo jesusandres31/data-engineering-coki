@@ -105,38 +105,38 @@ CREATE TABLE IF NOT EXISTS "facturaDetalle" (
 -- create constraints
 --
 DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'factura-NroDoc') THEN
-        ALTER TABLE factura ADD CONSTRAINT "factura-NroDoc" UNIQUE ("NroDoc");
+    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'factura-nro-doc') THEN
+        ALTER TABLE factura ADD CONSTRAINT "factura-nro-doc" UNIQUE ("NroDoc");
     END IF;
 END $$;
 
 DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'facturaDetalle-factura') THEN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'factura_detalle-factura') THEN
         ALTER TABLE "facturaDetalle"
-        ADD CONSTRAINT "facturaDetalle-factura"
+        ADD CONSTRAINT "factura_detalle-factura"
         FOREIGN KEY ("NroDoc")
         REFERENCES factura("NroDoc");
     END IF;
 END $$;
 
 DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'articulos-Codigo') THEN
-        ALTER TABLE articulos ADD CONSTRAINT "articulos-Codigo" UNIQUE ("Codigo");
+    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'articulos-codigo') THEN
+        ALTER TABLE articulos ADD CONSTRAINT "articulos-codigo" UNIQUE ("Codigo");
     END IF;
 END $$;
 
 DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'facturaDetalle-articulos') THEN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'factura_detalle-articulos') THEN
         ALTER TABLE "facturaDetalle"  
-        ADD CONSTRAINT "facturaDetalle-articulos" 
+        ADD CONSTRAINT "factura_detalle-articulos" 
         FOREIGN KEY ("Codigo") 
         REFERENCES articulos("Codigo");
     END IF;
 END $$;
 
 DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'clientes-Cod_Cliente') THEN
-        ALTER TABLE clientes ADD CONSTRAINT "clientes-Cod_Cliente" UNIQUE ("Cod_Cliente");
+    IF NOT EXISTS (SELECT 1 FROM information_schema.constraint_column_usage WHERE constraint_name = 'clientes-cod-cliente') THEN
+        ALTER TABLE clientes ADD CONSTRAINT "clientes-cod-cliente" UNIQUE ("Cod_Cliente");
     END IF;
 END $$;
 
