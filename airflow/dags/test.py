@@ -7,8 +7,9 @@ from airflow.operators.python import PythonOperator
 from airflow import DAG
 
 dag_args = {
+    "owner": "airflow",
     "depends_on_past": False,
-    "email": ["test@test.com"],
+    "email": ["airflow@test.com"],
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 1,
@@ -29,9 +30,9 @@ dag_args = {
 
 dag = DAG(
     "test1",
-    description="Mi primer DAG",
+    description="My first DAG",
     default_args=dag_args,
-    schedule=timedelta(days=1),
+    schedule=timedelta(days=1),  # you can use cron here to schedule
     start_date=datetime(2021, 1, 1),
     catchup=False,
     tags=["example"],
@@ -39,30 +40,29 @@ dag = DAG(
 )
 
 
-def tarea0_func(**kwargs):
-    conf = kwargs["dag_run"].conf
-
-    if "commit" in conf and conf["commit"] == "1":
-        raise AirflowFailException("Hoy no desplegamos porque no me gusta el commit 1!")
-
-    return {"ok": 1}
+def task0_func():
+    with open("/opt/airflow/dags/file.txt", "w") as file:
+        file.write("Hello, this is a sample text file created by Airflow!")
+        print("File created successfully")
 
 
-def tarea2_func(**kwargs):
-    xcom_value = kwargs["ti"].xcom_pull(task_ids="tarea0")
+def task2_func(**kwargs):
+    xcom_value = kwargs["ti"].xcom_pull(task_ids="task0")
 
-    print("Hola")
+    print("Hello")
     print(xcom_value)
 
-    return {"ok": 2}
+    return {"ok": "task2 ok"}
 
 
-tarea0 = PythonOperator(task_id="tarea0", python_callable=tarea0_func, dag=dag)
+task0 = PythonOperator(task_id="task0", python_callable=task0_func, dag=dag)
 
-tarea1 = BashOperator(
-    task_id="print_date", bash_command='echo "La fecha es $(date)"', dag=dag
+task1 = BashOperator(
+    task_id="bash_func",
+    bash_command="ls /opt/airflow/code && pwd",
+    dag=dag,
 )
 
-tarea2 = PythonOperator(task_id="tarea2", python_callable=tarea2_func, dag=dag)
+task2 = PythonOperator(task_id="task2", python_callable=task2_func, dag=dag)
 
-tarea0 >> [tarea1, tarea2]
+task0 >> task1 >> task2

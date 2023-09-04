@@ -22,7 +22,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: adminpassword
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
-      - '8080:80'
+      - '8081:80'
     volumes:
       - pgadmin:/var/lib/pgadmin
 
