@@ -1,9 +1,8 @@
 from datetime import datetime, timedelta
 
-
 from airflow.operators.bash import BashOperator
 from airflow.operators.docker_operator import DockerOperator
-
+from docker.types import Mount
 
 from airflow import DAG
 
@@ -33,13 +32,17 @@ dag = DAG(
     "test1",
     description="My ETL DAG",
     default_args=dag_args,
-    schedule=timedelta(days=1),  # you can use cron here to schedule
+    schedule=timedelta(days=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
-    tags=["example"],
-    # params={"commit": "000000"},
 )
 
+# inside container ETL path = /opt/airflow/ETL
+extract_compose_file = "/opt/airflow/ETL/extract/docker-compose.yml"
+transform_compose_file = "/opt/airflow/ETL/transform/docker-compose.yml"
+load_compose_file = "/opt/airflow/ETL/load/docker-compose.yml"
+
+# tasks
 task0 = BashOperator(
     task_id="bash_func0",
     bash_command="pwd",
@@ -52,22 +55,19 @@ task1 = BashOperator(
     dag=dag,
 )
 
-task2 = DockerOperator(
-    task_id="docker_compose_task",
-    image="docker/compose:latest",  # Using the official Docker Compose image
+extract_task = DockerOperator(
+    task_id="ejecutar_extract",
+    image="docker",
     api_version="auto",
     auto_remove=True,
-    command="up",
-    docker_url="unix://var/run/docker.sock",  # Connect to the host's Docker socket
-    network_mode="bridge",  # Adjust the network mode as needed
-    volumes=[
-        "/path/to/your/docker-compose-directory:/app"
-    ],  # Mount the directory containing your docker-compose.yml
-    environment={
-        "DOCKER_BUILD": "1",  # Set this environment variable to trigger --build in docker-compose up
-    },
+    command="up --build",
+    docker_url="unix://var/run/docker.sock",
+    network_mode="bridge",
+    mounts=[
+        Mount(source=extract_compose_file, target="/docker-compose.yam", type="bind"),
+    ],
     dag=dag,
 )
 
-
-task0 >> task1 >> task2
+# run
+task0 >> task1 >> extract_task
