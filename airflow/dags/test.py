@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 
-from airflow.operators.bash import BashOperator
-from airflow.operators.docker_operator import DockerOperator
-from docker.types import Mount
+from airflow.operators.bash_operator import BashOperator
 
 from airflow import DAG
 
@@ -37,37 +35,24 @@ dag = DAG(
     catchup=False,
 )
 
-# inside container ETL path = /opt/airflow/ETL
-extract_compose_file = "/opt/airflow/ETL/extract/docker-compose.yml"
-transform_compose_file = "/opt/airflow/ETL/transform/docker-compose.yml"
-load_compose_file = "/opt/airflow/ETL/load/docker-compose.yml"
-
 # tasks
-task0 = BashOperator(
-    task_id="bash_func0",
-    bash_command="pwd",
+extract_task = BashOperator(
+    task_id="extract_task",
+    bash_command="docker-compose -f /opt/airflow/ETL/extract/docker-compose.yml up --build",
     dag=dag,
 )
 
-task1 = BashOperator(
-    task_id="bash_func1",
-    bash_command="ls /opt/airflow/ETL",
+transform_task = BashOperator(
+    task_id="transform_task",
+    bash_command="docker-compose -f /opt/airflow/ETL/transform/docker-compose.yml up --build",
     dag=dag,
 )
 
-extract_task = DockerOperator(
-    task_id="ejecutar_extract",
-    image="docker",
-    api_version="auto",
-    auto_remove=True,
-    command="up --build",
-    docker_url="unix://var/run/docker.sock",
-    network_mode="bridge",
-    mounts=[
-        Mount(source=extract_compose_file, target="/docker-compose.yam", type="bind"),
-    ],
+load_task = BashOperator(
+    task_id="load_task",
+    bash_command="docker-compose -f /opt/airflow/ETL/load/docker-compose.yml up --build --abort-on-container-exit",
     dag=dag,
 )
 
-# run
-task0 >> task1 >> extract_task
+# Define task dependencies as needed
+extract_task >> transform_task >> load_task

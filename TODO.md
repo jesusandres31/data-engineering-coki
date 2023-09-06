@@ -1,5 +1,3 @@
-crear airflow.cgf en vez de pasar por entornos del dockerfile?
+create bashoperators to run docker in airflow
 
-usar bashoperators o dockeroperators para ejecutar los dockerfiles
-
-metabase
+run metabase and connect to db
