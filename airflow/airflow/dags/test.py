@@ -35,24 +35,26 @@ dag = DAG(
     catchup=False,
 )
 
-# tasks
+etl_path = "$AIRFLOW_HOME/../../ETL/"
+
+
 extract_task = BashOperator(
     task_id="extract_task",
-    bash_command="docker-compose -f /opt/airflow/ETL/extract/docker-compose.yml up --build",
+    bash_command=f"docker-compose -f {etl_path}/extract/docker-compose.yml up --build",
     dag=dag,
 )
 
 transform_task = BashOperator(
     task_id="transform_task",
-    bash_command="docker-compose -f /opt/airflow/ETL/transform/docker-compose.yml up --build",
+    bash_command=f"docker-compose -f {etl_path}/transform/docker-compose.yml up --build",
     dag=dag,
 )
 
 load_task = BashOperator(
     task_id="load_task",
-    bash_command="docker-compose -f /opt/airflow/ETL/load/docker-compose.yml up --build --abort-on-container-exit",
+    bash_command=f"docker-compose -f {etl_path}/load/docker-compose.yml up --build --abort-on-container-exit",
     dag=dag,
 )
 
-# Define task dependencies as needed
+
 extract_task >> transform_task >> load_task
