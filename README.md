@@ -8,8 +8,10 @@
 
 - ETL
 
-- Jupyter
+- Jupyter Notebook
+
+- Apache Airflow
 
 - PowerBI
 
-- Apache Airflow
+- Metabase

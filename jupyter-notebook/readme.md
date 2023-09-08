@@ -1,5 +1,7 @@
 # Run Jupiter locally:
 
+https://devinschumacher.com/how-to-setup-jupyter-notebook-virtual-environment-vs-code-kernels/
+
 ## create venv
 
 ```
@@ -37,6 +39,12 @@ pip install jupyter
 pip install ipykernel
 ```
 
+or
+
+```
+pip install -r requirements.txt
+```
+
 ## Create new kernel
 
 ```bash
@@ -53,7 +61,7 @@ jupyter notebook
 ## Select kernel for project
 
 - Open the VSCODE search bar: cmd+shift+p
-- Type in & choose: c
+- Type in & choose: “Notebook: Select Notebook Kernel”
 
 ## Requirements
 
