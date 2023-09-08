@@ -27,7 +27,7 @@ dag_args = {
 }
 
 dag = DAG(
-    "test1",
+    "etl-dag",
     description="My ETL DAG",
     default_args=dag_args,
     schedule=timedelta(days=1),
