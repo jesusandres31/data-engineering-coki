@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres-db:
     image: postgres:12-alpine
-    restart: always
+    restart: never
     ports:
       - 5431:5432
     environment:
@@ -16,7 +16,7 @@ services:
 
   metabase-app:
     image: metabase/metabase
-    restart: always
+    restart: never
     ports:
       - 3001:3000
     volumes:
