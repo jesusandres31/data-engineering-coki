@@ -1,17 +1,25 @@
 # Data Engineering project for Coki 📉📈📊
 
-- Datasource
+- What we're using in this project:
 
-- Datalake
+```
+Docker
 
-- Datawarehouse
+Python
 
-- ETL
+Apache Airflow
 
-- Jupyter Notebook
+MS Access
+PostgreSQL
 
-- Apache Airflow
+Jupyter Notebook
+Pandas
+Matplotlib
 
-- PowerBI
+PowerBI
+Metabase
+```
 
-- Metabase
+## Diagram
+
+![](data-eng.drawio.png 'Title')
