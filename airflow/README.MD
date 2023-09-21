@@ -40,6 +40,8 @@ echo $AIRFLOW_HOME
 
 airflow standalone
 
+go to localhost:8080
+
 ## install airflow
 
 https://airflow.apache.org/docs/apache-airflow/stable/start.html
