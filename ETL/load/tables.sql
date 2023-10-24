@@ -4,7 +4,7 @@
 CREATE TABLE IF NOT EXISTS "clientes" (
     "Cod_Cliente" TEXT PRIMARY KEY,
     "Razon_Social" TEXT,
-    "CUIT" TEXT,
+    /* "CUIT" TEXT,
     "Cod_IVA" TEXT,
     "LP" NUMERIC,
     "Domicilio" TEXT,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "clientes" (
     "Usuario" NUMERIC,
     "Linked" NUMERIC,
     "Saldo" NUMERIC,
-    "Anticipo" NUMERIC
+    "Anticipo" NUMERIC */
 );
 
 CREATE TABLE IF NOT EXISTS "articulos" (
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS "articulos" (
     "Precio03" NUMERIC,
     "Obs" TEXT,
     "Estado" NUMERIC,
-    "FechaHora" TIMESTAMP,
+   /*  "FechaHora" TIMESTAMP,
     "Usuario" NUMERIC,
     "Linked" NUMERIC,
-    "IVA" NUMERIC
+    "IVA" NUMERIC */
 );            
       
 CREATE TABLE IF NOT EXISTS "factura" (
