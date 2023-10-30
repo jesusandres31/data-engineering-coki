@@ -1,2 +1,1 @@
-limpiar mas los csv
-limpiar tablas
+fix metabase
